@@ -6,7 +6,8 @@ const taskRoutes = require('./routes/tasks');
 const app = express();
 
 const MONGODB_URI = 'mongodb://127.0.0.1:27017/tasks?';
-const PORT = process.env.PORT || 8080;
+// const MONGODB_URI = 'mongodb+srv://Halby:root@cluster0.bs6du.mongodb.net/tasks?retryWrites=true&w=majority';
+const PORT = process.env.PORT || 3000;
 
 
 app.use((req, res, next)=>{
@@ -35,6 +36,3 @@ mongoose
 .catch(err=>{
     console.error("Error connecting to database", err);
 })
-
-
-app.listen(3000);
