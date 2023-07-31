@@ -38,6 +38,10 @@ app.use((error, req, res, next) => {
     });
 });
 
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection:', reason);
+});
+
 mongoose
     .connect(MONGODB_URI)
     .then(result => {
