@@ -17,7 +17,7 @@ exports.createTask = async (req, res, next) => {
     });
     try {
         const savedTask = await task.save();
-        res.status(201).send({
+        res.status(201).json({
             message: 'task created successfully',
             task: savedTask
         });
@@ -45,7 +45,7 @@ exports.getTasks = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).send({
+        res.status(200).json({
             message: 'Tasks fetched successfully',
             tasks,
             totalItems
@@ -67,7 +67,7 @@ exports.getTask = async (req, res, next) => {
             error.statusCode = 404;
             throw error;
         }
-        res.status(200).send({
+        res.status(200).json({
             message: 'Task fetched successfully',
             task
         });

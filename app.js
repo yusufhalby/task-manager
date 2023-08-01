@@ -2,12 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/tasks');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
 const MONGODB_URI = 'mongodb://127.0.0.1:27017/tasks?';
 // const MONGODB_URI = 'mongodb+srv://Halby:root@cluster0.bs6du.mongodb.net/tasks?retryWrites=true&w=majority';
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 
 app.use((req, res, next) => {
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
+app.use(authRoutes);
 app.use(taskRoutes);
 
 app.get('/', (req, res, next) => {
