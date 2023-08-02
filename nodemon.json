@@ -1,5 +1,9 @@
 {
     "env": {
-        
+        "JWT_SECRET": "9JcXTD+B1HTRMPqtCI/H5Bhv1gV5WOcDCqdbbbH/op8=",
+        "API": "http://localhost:80",
+        "EMAIL_USER": "moaten25@gmail.com",
+        "EMAIL_PASS": "iagxpikarofdzkwc",
+        "EMAIL_SERVICE": "gmail"
     }
 }

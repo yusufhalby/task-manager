@@ -1,11 +1,13 @@
 const Category = require('../models/category');
 
 exports.createCategory = async (req, res, next) => {
+    const userId = req.userId;
     const {
         title
     } = req.body;
     const category = new Category({
-        title
+        title,
+        user: userId
     });
     try {
         const savedCategory = await category.save();
@@ -22,11 +24,16 @@ exports.createCategory = async (req, res, next) => {
 };
 
 exports.getCategories = async (req, res, next) => {
+    const userId = req.userId;
     const currentPage = req.query.page || 1;
     const perPage = 2;
     try {
-        const totalItems = await Category.find().countDocuments();
-        const categories = await Category.find()
+        const totalItems = await Category.find({
+            user: userId
+        }).countDocuments();
+        const categories = await Category.find({
+                user: userId
+            })
             .sort({
                 createdAt: -1
             })

@@ -27,6 +27,13 @@ const userSchema = new Schema({
     tasks: {
         type: Array,
         default: []
+    },
+    verKey: {
+        type: String,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true, // adds createdAt and updatedAt fields to the schema

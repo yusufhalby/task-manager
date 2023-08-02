@@ -8,12 +8,14 @@ exports.createTask = async (req, res, next) => {
         deuDate,
         category
     } = req.body;
+    const userId = req.userId;
     const task = new Task({
         title,
         description,
         status,
         deuDate,
-        category
+        category,
+        user: userId
     });
     try {
         const savedTask = await task.save();
@@ -32,9 +34,14 @@ exports.createTask = async (req, res, next) => {
 exports.getTasks = async (req, res, next) => {
     const currentPage = req.query.page || 1;
     const perPage = 2;
+    const userId = req.userId;
     try {
-        const totalItems = await Task.find().countDocuments();
-        const tasks = await Task.find()
+        const totalItems = await Task.find({
+            user: userId
+        }).countDocuments();
+        const tasks = await Task.find({
+                user: userId
+            })
             .sort({
                 createdAt: -1
             })
@@ -60,11 +67,17 @@ exports.getTasks = async (req, res, next) => {
 
 exports.getTask = async (req, res, next) => {
     const id = req.params.id;
+    const userId = req.userId;
     try {
         const task = await Task.findById(id);
         if (!task) {
             const error = new Error('Task not found');
             error.statusCode = 404;
+            throw error;
+        }
+        if (task.user != userId) {
+            const error = new Error('Not authorized');
+            error.statusCode = 402;
             throw error;
         }
         res.status(200).json({
