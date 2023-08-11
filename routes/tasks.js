@@ -1,14 +1,14 @@
 const router = require('express').Router();
 
-const taskRoutes = require('../controllers/task');
-const categoryRoutes = require('../controllers/category');
+const taskController = require('../controllers/task');
+const categoryController = require('../controllers/category');
 const isAuth = require('../middleware/is-auth');
 
-router.post('/task', isAuth, taskRoutes.createTask);
-router.post('/category', isAuth, categoryRoutes.createCategory);
+router.post('/task', isAuth, taskController.createTask);
+router.post('/category', isAuth, categoryController.createCategory);
 
-router.get('/category', isAuth, categoryRoutes.getCategories);
-router.get('/task', isAuth, taskRoutes.getTasks);
-router.get('/task/:id', isAuth, taskRoutes.getTask);
+router.get('/category', isAuth, categoryController.getCategories);
+router.get('/task', isAuth, taskController.getTasks);
+router.get('/task/:id', isAuth, taskController.getTask);
 
 module.exports = router;

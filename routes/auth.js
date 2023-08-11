@@ -3,7 +3,8 @@ const {
     body
 } = require('express-validator');
 
-const authRoutes = require('../controllers/auth');
+const authController
+ = require('../controllers/auth');
 
 router.put('/signup',
     [
@@ -22,7 +23,8 @@ router.put('/signup',
         .trim()
         .notEmpty().withMessage('Name cannot be empty.')
     ],
-    authRoutes.createUser);
+    authController
+    .createUser);
 
 router.post('/signin',
     [
@@ -37,10 +39,13 @@ router.post('/signin',
             max: 72
         }).withMessage('Password is between 6 and 72 characters.')
     ],
-    authRoutes.postSignIn);
+    authController
+    .postSignIn);
 
-router.get('/verify/:token', authRoutes.getVerify);
-router.get('/verify/resend/:id', authRoutes.getResend);
+router.get('/verify/:token', authController
+.getVerify);
+router.get('/verify/resend/:id', authController
+.getResend);
 
 
 module.exports = router;
