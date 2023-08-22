@@ -19,6 +19,9 @@ const taskSchema = new Schema({
         type: Date,
         required: true
     },
+    imageUrl: {
+        type: String,
+    },
     category: {
         type: Schema.Types.ObjectId,
         ref: 'Category'

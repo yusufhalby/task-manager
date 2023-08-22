@@ -9,11 +9,13 @@ exports.createTask = async (req, res, next) => {
         category
     } = req.body;
     const userId = req.userId;
+    const imageUrl = req.imageUrl;
     const task = new Task({
         title,
         description,
         status,
         deuDate,
+        imageUrl,
         category,
         user: userId
     });
@@ -21,7 +23,7 @@ exports.createTask = async (req, res, next) => {
         const savedTask = await task.save();
         res.status(201).json({
             message: 'task created successfully',
-            task: savedTask
+            task: savedTask,
         });
     } catch (err) {
         if (!err.statusCode) {

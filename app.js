@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/tasks');
 const authRoutes = require('./routes/auth');
+const {deleteObject} = require('firebase/storage');
 
 const app = express();
 
@@ -29,11 +30,15 @@ app.get('/', (req, res, next) => {
     `);
 });
 
-app.use((error, req, res, next) => {
+app.use(async (error, req, res, next) => {
     console.log(error);
     const status = error.statusCode || 500;
     const message = error.message;
     const data = error.data;
+    if (req.file) {
+        await deleteObject(req.imageRef);
+        console.log('File deleted successfully');
+    }
     res.status(status).json({
         message: message,
         data
