@@ -1,9 +1,16 @@
 {
     "env": {
         "JWT_SECRET": "9JcXTD+B1HTRMPqtCI/H5Bhv1gV5WOcDCqdbbbH/op8=",
-        "API": "http://localhost:80",
+        "API": "http://localhost:3000",
         "EMAIL_USER": "moaten25@gmail.com",
         "EMAIL_PASS": "iagxpikarofdzkwc",
-        "EMAIL_SERVICE": "gmail"
+        "EMAIL_SERVICE": "gmail",
+        "APIKEY": "AIzaSyDvX22de0AA-1c0o-G2hdRdqx7xXIl1npo",
+        "AUTH_DOMAIN": "task-manager-53bd1.firebaseapp.com",
+        "PROJECT_ID": "task-manager-53bd1",
+        "STORAGE_BUCKET": "task-manager-53bd1.appspot.com",
+        "MESSAGING_SENDER_ID": "18850677942",
+        "APP_ID": "1:18850677942:web:f32f7e7c19d501f4fe1217",
+        "MEASUREMENT_ID": "G-71EJX65VWN"
     }
 }
